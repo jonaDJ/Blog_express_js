@@ -1,9 +1,15 @@
 const express = require("express");
+// const morgan = require("morgan");
+
 const app = express();
 
 app.set("view engine", "ejs");
 
 app.listen(3000);
+
+app.use(express.static("public"));
+// You have install morgan to use this
+// app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   const blogs = [
@@ -43,6 +49,7 @@ app.get("/about-me", (req, res) => {
   res.redirect("/about");
 });
 
+//middleware
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });
