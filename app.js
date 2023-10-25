@@ -1,44 +1,41 @@
 const express = require("express");
-// const morgan = require("morgan");
+const morgan = require("morgan");
+const mongoose = require("mongoose");
+const Blog = require("./models/blog");
 
 const app = express();
 
-app.set("view engine", "ejs");
+//connet to mongodb
+const dbURI =
+  "mongodb+srv://jonDJ:test123@blogninja.auubd5k.mongodb.net/blog-ninja";
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((resylt) => app.listen(3000))
+  .catch((err) => console.log(err));
 
-app.listen(3000);
+//EJS engine
+app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 // You have install morgan to use this
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 
+//routes
 app.get("/", (req, res) => {
-  const blogs = [
-    {
-      title: "The Art of Responsive Web Design",
-      snippet:
-        "Learn the essential principles and techniques for creating responsive web designs that adapt to various screen sizes and devices. Dive into media queries, flexible layouts, and mobile-first strategies.",
-    },
-    {
-      title: "JavaScript Fundamentals: Variables and Data Types",
-      snippet:
-        "Explore the fundamental concepts of JavaScript programming, including variables, data types, and how to use them effectively in your web development projects.",
-    },
-    {
-      title: "Optimizing Website Performance for Better User Experience",
-      snippet:
-        "Discover practical tips and strategies for optimizing website performance, improving page load times, and enhancing the overall user experience on your web applications.",
-    },
-    {
-      title: "Mastering CSS Grid Layouts",
-      snippet:
-        "Unlock the power of CSS Grid Layouts to create complex, grid-based designs in your web projects. Dive into grid properties, templates, and responsive layout techniques.",
-    },
-  ];
-  res.render("index", { title: "Home", blogs });
+  res.redirect("/blogs");
 });
 
 app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
+});
+
+app.get("/blogs", (req, res) => {
+  Blog.find()
+    .sort({ createAt: -1 })
+    .then((result) =>
+      res.render("index", { title: "All Blogs", blogs: result })
+    )
+    .catch((err) => console.log(err));
 });
 
 app.get("/blogs/create", (req, res) => {
