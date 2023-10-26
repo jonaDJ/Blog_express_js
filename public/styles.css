@@ -7,6 +7,49 @@ body {
   padding: 0;
   background-color: #f7f7f7;
 }
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.site-title a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.site-title h1 {
+  font-size: 40px;
+  margin: 0;
+}
+
+.site-title p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+ul li:last-child {
+  margin-right: 0;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+}
 .content {
   max-width: 800px;
   margin: 0 auto;
@@ -89,7 +132,7 @@ button {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  font-family: cursive;
+  font-family: "Roboto", sans-serif;
 }
 
 /* 404 Not Found Styles */
@@ -111,47 +154,43 @@ footer p {
   font-size: 14px;
 }
 
-/* Navigation Styles */
-nav {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-}
+/* Blog Link Styles */
 
-.site-title a {
-  text-decoration: none;
-  color: #fff;
-}
-
-.site-title h1 {
-  font-size: 40px;
-  margin: 0;
-}
-
-.site-title p {
-  font-size: 14px;
-  margin: 5px 0;
-}
-
-ul {
+.blogs-div {
   display: flex;
-  justify-content: flex-end;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  flex-direction: column;
+  gap: 30px;
 }
 
-ul li {
-  display: inline;
-  margin-right: 20px;
-}
-
-ul li:last-child {
-  margin-right: 0;
-}
-
-ul li a {
+.blog-link {
   text-decoration: none;
+  color: #333;
+  display: block;
+  border: 6px solid transparent;
+  padding: 10px;
+  border-radius: 8px;
+  border-left: 6px solid crimson;
+}
+
+.blog-link:hover {
+  color: grey;
+  border-left: 6px solid crimson;
+  border: 6px solid gray;
+}
+
+.delete {
+  display: inline-block;
+  background-color: black;
   color: #fff;
-  font-size: 16px;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete:hover {
+  background-color: gray;
 }
