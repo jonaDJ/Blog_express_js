@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const blogRoutes = require("./routes/blogRoutes");
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 //connet to mongodb
 const dbURI =
@@ -11,7 +12,9 @@ const dbURI =
 
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => app.listen(3000))
+  .then((result) =>
+    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+  )
   .catch((err) => console.log(err));
 
 //EJS engine
