@@ -10,10 +10,10 @@ The project is organized as follows:
    ```
    |-- controllers
    |-- models
-   |-- public (contains style.css)
+   |-- public
    |-- routes
    |-- views
-   |-- app.js
+   |app.js
    ```
 
 - `controllers`: Contains the controller files that handle various functionalities of the application.
